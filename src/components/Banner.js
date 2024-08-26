@@ -1,21 +1,31 @@
 import React, {useEffect, useState} from 'react'
 import './Banner.css'
-import {categories, getData } from '../api';
+import {getCategories, getDataAll } from '../api';
 
 function Banner() {
     const [movie, setMovie] = useState({});
 
+
+
     const fetchRandomMovie = async () => {
         try{
-            const netflixOriginalsCategory = categories.find( 
+
+            const categories = await getCategories();
+
+            const netflixOriginalsCategory = Array.isArray(categories) && categories.find( 
                 (category) => category.name === "netflixOriginals"
             )
 
-            const data = await getData(netflixOriginalsCategory.path)
-            const movies = data?.results
-            const randomIndex = Math.floor(Math.random() * movies.length)
-            console.log(movies[randomIndex])
-            setMovie(movies[randomIndex])
+            // Chamar o backend passando o path como query string
+            const data = await getDataAll(netflixOriginalsCategory)
+            console.log(data)
+
+            
+
+            const movies = data?.results;
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            console.log(movies[randomIndex]);
+            setMovie(movies[randomIndex]);
 
         }catch (error) {
             console.log("Deu ruim no Banner.js", error)
@@ -45,7 +55,7 @@ function Banner() {
         >
             <div className='banner-content'>
                 <h1 className='banner-title'>
-                    { movie?.title || movie?.ñame || movie?.original_name }
+                    { movie?.title || movie?.name || movie?.original_name }
                 </h1>
                 <div className='banner-button-container'>
                     <div className='banner-button'>

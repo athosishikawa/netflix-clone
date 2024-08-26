@@ -2,26 +2,17 @@
 import { useEffect } from 'react';
 import './Home.css';
 import React, { useState } from 'react';
+import {getData} from './api';
 
 export default function Home() {
-    const [tvs, setTVs] = useState()
+    const [tvs, setTVs] = useState([])
 
-    let getData = async () => {
-        let API_KEY = 'b83c004f5b194bb6a5da970cbd8c71da'
-        let URI = 'https://api.themoviedb.org/3/genre/tv/list?api_key='+API_KEY
-
-        let data = await fetch(URI)
-
-        let result = data.json()
-
-        return result
-    }
 
     useEffect(()=>{
 
         getData().then((data)=>{
             console.log(data)
-            setTVs(data)
+            setTVs(data.results || [])
         })
 
     },[])

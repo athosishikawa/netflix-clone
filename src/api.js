@@ -1,57 +1,42 @@
-const API_KEY = 'b83c004f5b194bb6a5da970cbd8c71da'
-const DNS = 'https://api.themoviedb.org/3'
 
-export const categories = [
-    {
-        name: "trending",
-        title: "Em Alta",
-        path: "/trending/all/week?api_key="+API_KEY+"&language=pt-BR",
-        isLarge: true,
-    },
-    {
-        name: "netflixOriginals",
-        title: "Originais Netflix",
-        path: "/discover/tv?api_key="+API_KEY+"&with_networks=213",
-        isLarge: false,
-    },
-    {
-        name: "topRated",
-        title: "Populares",
-        path: "/movie/top_rated?api_key="+API_KEY+"&language=pt-BR",
-        isLarge: false,
-    },
-    {
-        name: "comedy",
-        title: "Comédias",
-        path: "/discover/tv?api_key="+API_KEY+"&with_genres=35",
-        isLarge: false,
-    },  
-    {
-        name: "romances",
-        title: "Romances",
-        path: "/discover/tv?api_key="+API_KEY+"&with_genres=10749",
-        isLarge: false,
-    },                
-    {
-        name: "documentaries",
-        title: "Documentários",
-        path: "/discover/tv/api_key="+API_KEY+"&with_genres=99",
-        isLarge: false,
-    }
-]
+export const getData = async () => {
+    let URI = 'http://localhost:8080/api/movies/trending'
 
-export const getData = async (path) => {
-    
-    try{
-   
-        let URI = DNS + path
-        let result = await fetch (URI)
-    
-        return result.json()
-    } catch (error){
+    let data = await fetch(URI)
 
-        console.log(error)    
+    let result = data.json()
+
+    console.log("Data FETCHED:", result)
+    return result
+}
+
+export const getCategories = async () => {
+    let URI = 'http://localhost:8080/api/categories'
+
+    let data = await fetch(URI)
+
+    let result = data.json()
+
+    console.log(result)
+    return result
+}
+
+export const getDataAll = async (category) => {
+
+
+    let path;
+    if (typeof category === 'object' && category.path) {
+        path = category.path;
+    } else if (typeof category === 'string') {
+        path = category;
+    } else {
+        throw new Error("O parâmetro category deve ser um objeto com a propriedade 'path' ou uma string.");
     }
 
+    
+    const data = await fetch(`http://localhost:8080/api/movies?path=${encodeURIComponent(path)}`)
+    .then(response => response.json());
 
+    
+    return data
 }
