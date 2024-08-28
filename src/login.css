@@ -1,0 +1,122 @@
+.App {
+  background-color: black;
+  color: white;
+  margin: 0%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-image: url("https://wallpapers.com/images/high/netflix-background-gs7hjuwvv2g0e9fj.webp");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  padding-top: 90px;
+  width: 100vw;
+}
+
+
+.App-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80vh;
+  width: 40vw;
+
+  /* text-align: center; */
+
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 48px 68px;
+  max-width: 800px;
+  max-height: 900px;
+}
+
+.App-header h1 {
+  text-align: left;
+  align-self: flex-start;
+}
+
+.App-header input{
+  width: 90%;
+  line-height: 1.5;
+  padding: 1rem 1rem 1rem;
+  margin-bottom: 2vh;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.637);
+  color: #e7e7e7;
+
+}
+.App-header a{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration:underline;
+  }
+}
+
+.App-header p{
+  color: #8c8c8c;
+  font-size: 16px;
+  padding-top: 1rem ;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.captcha{
+  color: #8c8c8c;
+  font-size: 13px;
+  padding-top: 1rem ;
+}
+
+
+.App-header button{
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+  width: 100%;
+  line-height: 1.5;
+  padding: 1rem 1rem 1rem;
+  margin-bottom: 2vh;
+  border-radius: 5px;
+  background: rgb(193, 17, 25);
+}
+
+.checkboxContainer{
+  padding-top: 30px;;
+  width: 100%;
+  display: flex;
+  align-items: center; /* Alinha a checkbox e a label verticalmente */
+  justify-content: flex-start; /* Mantém o alinhamento à esquerda */
+}
+
+.checkboxContainer input[type='checkbox']{
+  margin-right: 8px; /* Espaço entre a checkbox e a label */
+  height: 16px; /* Ajuste da altura da checkbox, caso necessário */
+  width: 16px; /* Ajuste da largura da checkbox, caso necessário */
+  vertical-align: middle; /* Alinha a checkbox no meio da linha */
+  transform: translateY(6px);
+}
+
+.checkboxContainer label{
+  font-size: 16px; /* Certifique-se de que o tamanho da fonte seja consistente */
+  line-height: 16px; /* Ajuste a altura da linha para corresponder à checkbox */
+}
+
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding: 20px;
+}
+
+.nav-logo {
+  position: fixed;
+  left: 20px;
+  width: 160px;
+  object-fit: contain;
+}
+

@@ -1,4 +1,4 @@
-import './App.css';
+import './login.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,9 @@ function Login() {
   const [email, setEmail] = useState(0);
   const [senha, setSenha] = useState(0);
   const navigate = useNavigate();
+
+  const logo = "https://upload.wikimedia.org/wikipedia/commons/6/67/NewNetflixLogo.png"
+
 
   let onChangeEmail = (e) => {
     setEmail(e.target.value)
@@ -79,20 +82,39 @@ function Login() {
 
   return (
     <div className="App">
-      <header className="App-header">
-          <label>Email:</label> <input onChange={onChangeEmail}></input>
-          <label>Senha:</label> <input onChange={onChangeSenha}></input>
+      
+      <header className="nav-container">
+        <img className="nav-logo" src={logo} alt="NetFlix"></img>
+        
+      </header>
 
-          <button onClick={logar}>Logar</button>
+      <div className="App-header">
+          <h1>Entrar</h1>
+          <input onChange={onChangeEmail} placeholder="Email ou número de Celular" ></input>
+          <input type = "password" onChange={onChangeSenha} placeholder="Senha" ></input>
 
-          <button onClick={testar}>Testar</button>
+          {/* <button onClick={logar}>Logar</button>
+
+          <button onClick={testar}>Testar</button> */}
 
           <button onClick={entrar}>Entrar</button>
+          <a href = "https://www.netflix.com/br/LoginHelp">Esqueceu a senha?</a>
 
+          <div className='checkboxContainer'>
+            <input type='checkbox'></input>
+            <label htmlFor='checkbox'>Lembre-se de mim</label>
+          </div>
+
+
+          <p>Novo por aqui? <a href = "https://www.netflix.com/br/">Assine agora.</a>
+          </p>
+
+          <div className='captcha'>Essa página é protegida pelo Google reCAPTCHA para garantir que você não é um robô. Saiba mais</div>
+          
 
           { response?.data }
       
-      </header>
+      </div>
     </div>
   );
 }
