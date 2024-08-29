@@ -15,9 +15,23 @@
     object-fit: contain;
 }
 
+.nav-user{
+    position: fixed;
+    right: 40px;
+    width: 130px;
+    align-items: center;
+    justify-content: center;
+}
+
 .nav-avatar {
     position: fixed;
     right: 20px;
     width: 30px;
     object-fit: contain;
+}
+
+.nav-username{
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
 }

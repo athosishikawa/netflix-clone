@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import './Banner.css'
+import axios from 'axios'
 import {getCategories, getDataAll } from '../api';
 
 function Banner() {
     const [movie, setMovie] = useState({});
+    const [userAge, setUserAge] = useState(null);
 
 
 
@@ -13,22 +15,46 @@ function Banner() {
             const categories = await getCategories();
 
             const netflixOriginalsCategory = Array.isArray(categories) && categories.find( 
-                (category) => category.name === "netflixOriginals"
+                (category) => category.name === "romances"
             )
 
             // Chamar o backend passando o path como query string
-            const data = await getDataAll(netflixOriginalsCategory)
-            console.log(data)
+            const data = await getDataAll(netflixOriginalsCategory) 
 
-            
 
             const movies = data?.results;
             const randomIndex = Math.floor(Math.random() * movies.length);
-            console.log(movies[randomIndex]);
-            setMovie(movies[randomIndex]);
+
+
+            fetchIdade()
+
+            if (!movies[randomIndex].adult){
+                setMovie(movies[randomIndex]);
+                console.log("NOME: ", movies[randomIndex].title)
+                console.log("ADULTO: ", movies[randomIndex].adult)
+
+            }
+            if (movies[randomIndex].adult && userAge >= 18){
+                setMovie(movies[randomIndex]);
+            }
+            
 
         }catch (error) {
             console.log("Deu ruim no Banner.js", error)
+        }
+    }
+
+    const fetchIdade = async () => {
+        try{
+            const userResponse = await axios.get("http://localhost:8080/test", {
+                headers: {
+                    'Authorization': sessionStorage.getItem("sessionID")
+                }
+            });
+            setUserAge(userResponse.data.idade);  // Atualiza o estado com a idade do usuário
+    
+        }catch (error) {
+            console.log(error)
         }
     }
 

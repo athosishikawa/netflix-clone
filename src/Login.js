@@ -64,10 +64,11 @@ function Login() {
   } 
 
   let testar = () => {
-    axios.post("http://localhost:8080/test", 
+    axios.get("http://localhost:8080/test", 
     {
-        "sessionID": sessionStorage.getItem("sessionID")
-    
+      headers: {
+        'Authorization': sessionStorage.getItem("sessionID")
+      }
     }
     ).then(resp => {
      
@@ -93,11 +94,12 @@ function Login() {
           <input onChange={onChangeEmail} placeholder="Email ou número de Celular" ></input>
           <input type = "password" onChange={onChangeSenha} placeholder="Senha" ></input>
 
-          {/* <button onClick={logar}>Logar</button>
+          <button onClick={logar}>Logar</button>
 
-          <button onClick={testar}>Testar</button> */}
+          <button onClick={testar}>Testar</button>
 
           <button onClick={entrar}>Entrar</button>
+
           <a href = "https://www.netflix.com/br/LoginHelp">Esqueceu a senha?</a>
 
           <div className='checkboxContainer'>
@@ -112,7 +114,7 @@ function Login() {
           <div className='captcha'>Essa página é protegida pelo Google reCAPTCHA para garantir que você não é um robô. Saiba mais</div>
           
 
-          { response?.data }
+          {/* { response?.data } */}
       
       </div>
     </div>
