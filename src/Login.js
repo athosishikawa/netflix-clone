@@ -94,9 +94,9 @@ function Login() {
           <input onChange={onChangeEmail} placeholder="Email ou número de Celular" ></input>
           <input type = "password" onChange={onChangeSenha} placeholder="Senha" ></input>
 
-          <button onClick={logar}>Logar</button>
+          {/* <button onClick={logar}>Logar</button>
 
-          <button onClick={testar}>Testar</button>
+          <button onClick={testar}>Testar</button> */}
 
           <button onClick={entrar}>Entrar</button>
 

@@ -15,7 +15,7 @@ function Banner() {
             const categories = await getCategories();
 
             const netflixOriginalsCategory = Array.isArray(categories) && categories.find( 
-                (category) => category.name === "romances"
+                (category) => category.name === "netflixOriginals"
             )
 
             // Chamar o backend passando o path como query string
@@ -27,6 +27,8 @@ function Banner() {
 
 
             fetchIdade()
+            console.log("IDADE: ", userAge)
+
 
             if (!movies[randomIndex].adult){
                 setMovie(movies[randomIndex]);
